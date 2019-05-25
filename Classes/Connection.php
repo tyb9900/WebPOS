@@ -12,7 +12,7 @@ class Connection
            $this->conn = new PDO("mysql:host=$this->servername;dbname=$this->databaseName", $this->username);
            // set the PDO error mode to exception
            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-           echo "Connected successfully";
+          // echo "Connected successfully";
        }
        catch(PDOException $e)
        {
@@ -36,9 +36,9 @@ class Connection
     public function executeQuery($prepared,$parameters)
     {
         try {
-            echo "Parameters : ", print_r($parameters);
+           // echo "Parameters : ", print_r($parameters);
             $prepared->execute($parameters);
-            echo "Query Executed Successfully!";
+          //  echo "Query Executed Successfully!";
         }
         catch(PDOException $e)
         {
@@ -49,6 +49,6 @@ class Connection
     {
         // TODO: Implement __destruct() method.
         $this->conn=null;
-        echo "Connection Closed";
+       // echo "Connection Closed";
     }
 }
