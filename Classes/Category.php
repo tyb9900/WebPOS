@@ -1,6 +1,6 @@
 <?php
-require ("Connection.php");
-require ("CRUD.php");
+require_once ("Connection.php");
+require_once ("CRUD.php");
 
 class Category extends Connection implements CRUD
 {

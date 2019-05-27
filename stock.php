@@ -1,31 +1,29 @@
 <?php
 session_start();
+require ("Classes/Stock.php");
 require ("Classes/Article.php");
-require ("Classes/Category.php");
 
 if(isset($_GET["article"]))
 {
     $article = $_GET["article"];
-    isset($_GET["price"]) ? $price = $_GET["price"] : $price=null;
-    isset($_GET["categoryid"]) ? $catid = $_GET["categoryid"] : $catid=null;
-
-    $art = new Article();
+    isset($_GET["pairs"]) ? $pairs = $_GET["pairs"] : $pairs=null;
+    $art = new Stock();
     $art->setArticle($article);
-    $art->setPrice($price);
-    $art->setCategory($catid);
-    if(isset($_GET["AddArticle"])  && isset($_GET["categoryid"]) && isset($_GET["price"]))
+    $art->setQuantity($pairs);
+    if(isset($_GET["AddArticle"]) && isset($_GET["pairs"]))
     {
         $art->insert();
         echo "<script>alert(\"INSERTED\");</script>";
         //<?php
     }
-    else if(isset($_GET["UpdateArticle"])  && isset($_GET["categoryid"]) && isset($_GET["price"]))
+    else if(isset($_GET["UpdateArticle"]) && isset($_GET["pairs"]))
     {
         $art->update();
         echo "<script>alert(\"UPDATED\");</script>";
     }
     else if(isset($_GET["DeleteArticle"]))
     {
+
         $art->delete();
         echo "<script>alert(\"DELETED\");</script>";
     }
@@ -77,7 +75,7 @@ if(isset($_GET["article"]))
                         <a href="index.php">Home</a>
                     </li>
                     <li class="active">
-                        <strong>Manage Articles</strong>
+                        <strong>Manage Stock</strong>
                     </li>
                 </ol>
             </div>
@@ -85,14 +83,14 @@ if(isset($_GET["article"]))
         <br>
         <?php
         if($_SESSION["type"]=="Admin")
-            include ("AdminViews/articleview.php");
+            include ("AdminViews/stockview.php");
         ?>
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Categories Table</h5>
+                        <h5>Stock Table</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -106,34 +104,42 @@ if(isset($_GET["article"]))
                                 <thead>
                                 <tr>
                                     <th>Article</th>
-                                    <th>Price</th>
                                     <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Pairs</th>
+                                    <th>Amount</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $art = new Article();
-                                $res = $art->retriveAll();
-                                if($res->rowCount()>0)
-                                {
-                                    $res = $res->fetchAll();
-                                    foreach ($res as $r)
+                                    $stock = new Stock();
+                                    $res = $stock->retriveAll();
+                                    if($res->rowCount()>0)
                                     {
-                                        echo "<tr class=\"gradeX\">";
-                                        echo "<td>".$r["Article"]."</td>";
-                                        echo "<td>".$r["Price"]."</td>";
-                                        echo "<td>".$r["Category"]."</td>";
-                                        echo "</tr>";
+                                        $res = $res->fetchAll();
+                                        foreach ($res as $r)
+                                        {
+                                            echo "<tr class=\"gradeX\">";
+                                            echo "<td>".$r["Article"]."</td>";
+                                            echo "<td>".$r["Category"]."</td>";
+                                            echo "<td>".$r["Price"]."</td>";
+                                            echo "<td>".$r["Pairs"]."</td>";
+                                            echo "<td>".$r["Amount"]."</td>";
+                                            echo "</tr>";
+                                        }
                                     }
-                                }
                                 ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
                                     <th>Article</th>
-                                    <th>Price</th>
                                     <th>Category</th>
+                                    <th>Price</th>
+
+                                    <th>Pairs</th>
+                                    <th>Amount</th>
+
                                 </tr>
                                 </tfoot>
                             </table>
@@ -180,12 +186,12 @@ if(isset($_GET["article"]))
 
         $(document).ready(function () {
             $(".select2_demo_3").select2({
-                placeholder: "Select",
+                placeholder: "Select a Article",
                 allowClear: true
             });
 
 
-        $('.dataTables-example').DataTable({
+            $('.dataTables-example').DataTable({
                 pageLength: 25,
                 responsive: true,
                 dom: '<"html5buttons"B>lTfgitp',

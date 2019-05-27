@@ -23,7 +23,7 @@ class Connection
    public function prepareQuery($query)
    {
        try {
-           echo "Query : ", $query;
+           //echo "Query : ", $query;
            return $this->conn->prepare($query);
        }
        catch(PDOException $e)
@@ -38,7 +38,7 @@ class Connection
         try {
            // echo "Parameters : ", print_r($parameters);
             $prepared->execute($parameters);
-          //  echo "Query Executed Successfully!";
+            //echo "Query Executed Successfully!";
         }
         catch(PDOException $e)
         {

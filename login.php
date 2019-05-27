@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+session_start();
+session_destroy();
+setcookie("username",null,time()-3600,"/");
+setcookie("type",null,time()-3600,"/");
+?>
 <html>
 <head>
     <meta charset="utf-8">
@@ -34,7 +39,7 @@
             <button name="loginSubmit" type="submit" class="btn btn-primary block full-width m-b">Login</button>
 
             <p class="text-muted text-center"><small>Do not have an account?</small></p>
-            <a class="btn btn-sm btn-white btn-block" href="#">Create an account</a>
+            <a class="btn btn-sm btn-white btn-block" href="register.php">Create an account</a>
         </form>
         <p class="m-t"> <small>Infinty Devs &copy; 2019</small> </p>
     </div>
@@ -64,7 +69,7 @@ if(isset($_POST["loginSubmit"]))
         echo "Redirect!";
     }
     else{
-        echo "Wrong Username and Password!";
+
     }
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
-require ("Connection.php");
-require ("CRUD.php");
+require_once ("Connection.php");
+require_once ("CRUD.php");
 
 class Article extends Connection implements CRUD
 {
@@ -106,7 +106,7 @@ class Article extends Connection implements CRUD
     function retriveAll()
     {
         // TODO: Implement retriveAll() method.
-        $query = "SELECT *FROM $this->TABLE";
+        $query = "SELECT Article,Price,(SELECT categories.Name from categories where categories.id=articles.Category) AS Category FROM articles";
         $prepared = $this->prepareQuery($query);
         $this->executeQuery($prepared,null);
         return $prepared;

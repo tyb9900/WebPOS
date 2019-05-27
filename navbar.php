@@ -12,7 +12,7 @@
 
 
             <li>
-                <a href="login.html">
+                <a href="login.php">
                     <i class="fa fa-sign-out"></i> Log out
                 </a>
             </li>
