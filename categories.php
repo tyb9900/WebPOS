@@ -2,6 +2,10 @@
 
 require ("Classes/Category.php");
 session_start();
+if(!isset($_SESSION["username"]))
+{
+    header("location:index.php");
+}
 if(isset($_GET["categoryid"]))
 {
     $id = $_GET["categoryid"];

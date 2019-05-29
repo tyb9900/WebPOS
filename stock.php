@@ -1,7 +1,12 @@
 <?php
 session_start();
-require ("Classes/Stock.php");
-require ("Classes/Article.php");
+require_once ("Classes/Stock.php");
+require_once ("Classes/Article.php");
+
+if(!isset($_SESSION["username"]))
+{
+    header("location:index.php");
+}
 
 if(isset($_GET["article"]))
 {

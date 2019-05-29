@@ -1,6 +1,7 @@
 <?php
 
 require_once("../Classes/Sale.php");
+require_once("../Classes/Stock.php");
 
 // Unescape the string values in the JSON array
 $tableData = stripcslashes($_REQUEST['TableData']);
@@ -17,18 +18,25 @@ try
     $sale->insert();
     echo "SUCCESS";
 
+// Decode the JSON array
+    $tableData = json_decode($tableData,TRUE);
+    $stock = new Stock();
+    foreach ($tableData as $data)
+    {
+        try{
+
+        $stock->setArticle($data["Article"]);
+        $stock->setQuantity((-1) * (int)$data["Pairs"]);
+        $stock->insert();
+        }
+        catch (Exception $ex)
+        {
+
+        }
+    }
+
 }
 catch (Exception $ex)
 {
     echo $ex->getMessage();
 }
-
-
-//
-//// Decode the JSON array
-//$tableData = json_decode($tableData,TRUE);
-//
-//foreach ($tableData as $data)
-//{
-//    echo $data["Article"];
-//}

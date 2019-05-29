@@ -2,6 +2,16 @@
 session_start();
 require ("Classes/User.php");
 
+if(!isset($_SESSION["username"]))
+{
+    header("location:index.php");
+}
+
+if(isset($_SESSION["type"]) && $_SESSION["type"]!=="Admin")
+{
+  header("location:403.php");
+}
+
 if(isset($_POST["Adduser"]))
 {
     $username = $_POST["username"];

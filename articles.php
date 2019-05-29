@@ -3,6 +3,11 @@ session_start();
 require ("Classes/Article.php");
 require ("Classes/Category.php");
 
+if(!isset($_SESSION["username"]))
+{
+    header("location:index.php");
+}
+
 if(isset($_GET["article"]))
 {
     $article = $_GET["article"];

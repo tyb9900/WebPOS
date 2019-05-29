@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
-    $("#AddArticle").click(function () {
+    $("#AddArticle").click(function (e) {
+        e.preventDefault();
         var table = $("#cart").DataTable();
         var article = $("#article option:selected").text();
         var totalPairs= parseInt($("#totalPairs").val());
@@ -19,6 +20,7 @@ $(document).ready(function(){
                 ] ).draw( false );
                 $("#totalPairs").val(totalPairs);
                 $("#totalAmount").val(totalAmount);
+                $("#pairs").val('');
             }});
     });
 
@@ -41,11 +43,17 @@ $(document).ready(function(){
     }
 
     $("#checkout").click(function () {
+        var table = $('#cart').DataTable();
+
+        if ( ! table.data().count() ) {
+            alert( 'Empty cart' );
+            return;
+        }
         var d= new Date();
         var date = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
             d.getFullYear();
         var ddate = date.split("-").reverse().join("-");
-        alert(ddate);
+
         var TableData;
         TableData = storeTblValues();
         TableData = JSON.stringify(TableData);
@@ -61,6 +69,8 @@ $(document).ready(function(){
                 "date": ddate,
             },
             success: function(msg){
+                var table = $("#cart").DataTable();
+                table.clear().draw();
                 // return value stored in msg variable
                 alert(msg);
 

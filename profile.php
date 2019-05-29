@@ -1,6 +1,10 @@
 <?php
 #Orignal Source https://www.w3schools.com/php/php_file_upload.asp
 require_once ('Classes/User.php');
+if(!isset($_SESSION["username"]))
+{
+    header("location:index.php");
+}
 $target_dir = "graphics/users/";
 $target_file = $target_dir . basename($_FILES["profilePicture"]["name"]);
 $uploadOk = 1;

@@ -3,6 +3,10 @@
 require ("Classes/Stock.php");
 require ("Classes/Article.php");
 session_start();
+if(!isset($_SESSION["username"]))
+{
+    header("location:index.php");
+}
 ?>
 
 
@@ -69,7 +73,7 @@ session_start();
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form role="form">
+                        <form role="form" action="">
 
                             <div class="row">
                                 <div class="form-group col-lg-12">
@@ -100,7 +104,8 @@ session_start();
                                            class="form-control"  required="">
                                 </div>
                             </div>
-                            <button class="btn btn-success center-block" name="AddArticle" id="AddArticle" type="button">Add Article</button>
+                            <input class="btn btn-success center-block" value="Add Article" name="AddArticle"
+                                    id="AddArticle" type="submit">
                         </form>
                     </div>
                 </div>
