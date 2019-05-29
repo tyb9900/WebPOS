@@ -3,8 +3,8 @@
 class Connection
 {
    private $servername = 'remotemysql.com';
-   private $databaseName = 'lxghNOWMO';
-   private $username = 'lxghNOWMO';
+   private $databaseName = 'IxyghNOWMO';
+   private $username = 'IxyghNOWMO';
    private $password = 'hEcGbld5C3';
    private $conn = null;
    public function __construct()
