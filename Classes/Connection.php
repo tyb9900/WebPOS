@@ -5,7 +5,7 @@ class Connection
 //   private $servername = 'localhost';
 //   private $databaseName = 'WebPOS';
 //   private $username = 'root';
-    private $servername = 'localhost';
+    private $servername = 'remotemysql.com';
     private $databaseName = 'IxyghNOWMO';
     private $username = 'IxyghNOWMO';
    private $password = 'hEcGbld5C3';
