@@ -13,7 +13,7 @@ class Sale extends Connection implements CRUD
     public function __construct()
     {
         parent::__construct();
-        $this->TABLE="sales";
+        $this->TABLE="SALES";
     }
 
 

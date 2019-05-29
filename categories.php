@@ -160,6 +160,7 @@ include ("footer.php");
 <!-- jQuery UI -->
 <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
+    <script src="js/pages.js"></script>
 
     <!-- Page-Level Scripts -->
     <script>

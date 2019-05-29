@@ -3,31 +3,6 @@
 require ("Classes/Stock.php");
 require ("Classes/Article.php");
 session_start();
-
-//if(isset($_GET["article"]) && isset($_GET["pairs"]))
-//{
-//    $article = $_GET["article"];
-//    $pairs = $_GET["pairs"];
-//    $art = new Stock();
-//    $art->setArticle($article);
-//    $art->setQuantity($pairs);
-//    if(isset($_GET["AddArticle"]))
-//    {
-//        $art->insert();
-//        echo "<script>alert(\"INSERTED\");</script>";
-//        //<?php
-//    }
-//    else if(isset($_GET["UpdateArticle"]))
-//    {
-//        $art->update();
-//        echo "<script>alert(\"UPDATED\");</script>";
-//    }
-//    else if(isset($_GET["DeleteArticle"]))
-//    {
-//        $art->delete();
-//        echo "<script>alert(\"DELETED\");</script>";
-//    }
-//}
 ?>
 
 
@@ -39,7 +14,7 @@ session_start();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>POS | Article</title>
+    <title>POS | Sale</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -58,7 +33,7 @@ session_start();
 <body>
 <div id="wrapper">
     <?php
-    include("sidebar.php");
+    include "sidebar.php";
     ?>
 
     <div id="page-wrapper" class="gray-bg">
@@ -230,6 +205,7 @@ session_start();
     <!-- Select2 -->
     <script src="js/plugins/select2/select2.full.min.js"></script>
 
+    <script src="js/pages.js"></script>
 
     <!-- Page-Level Scripts -->
     <script>

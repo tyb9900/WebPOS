@@ -12,7 +12,7 @@ class Article extends Connection implements CRUD
     public function __construct()
     {
         parent::__construct();
-        $this->TABLE = "articles";
+        $this->TABLE = "ARTICLES";
     }
 
     /**

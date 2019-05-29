@@ -46,11 +46,11 @@ class User
             $params = [$username];
             $this->userConnection->executeQuery($prepared,$params);
             if($prepared->rowCount()>0)
-                return true;
+            return true;
         }
         catch (Exception $ex)
         {
-            echo "Error : ", $ex;
+            echo "<script>alert(\"Error : \" . $ex->getMessage()"."\");</script>";
         }
         return false;
     }
@@ -66,7 +66,7 @@ class User
         }
         catch (Exception $ex)
         {
-            echo "Error : ", $ex;
+            echo "<script>alert(\"Error : \" . $ex->getMessage()"."\");</script>";
         }
         return false;
     }
@@ -78,11 +78,11 @@ class User
             $prepared = $this->userConnection->prepareQuery($query);
             $params = [$type,$username];
             $this->userConnection->executeQuery($prepared,$params);
-            return true;
+                return true;
         }
         catch (Exception $ex)
         {
-            echo "Error : ", $ex;
+            echo "<script>alert(\"Error : \" . $ex->getMessage()"."\");</script>";
         }
         return false;
     }
@@ -98,7 +98,7 @@ class User
         }
         catch (Exception $ex)
         {
-            echo "Error : ", $ex;
+            echo "<script>alert(\"Error : \" . $ex->getMessage()"."\");</script>";
         }
     }
     public function getUsers()
@@ -112,7 +112,7 @@ class User
         }
         catch (Exception $ex)
         {
-            echo "Error : ", $ex;
+            echo "<script>alert(\"Error : \" . $ex->getMessage()"."\");</script>";
         }
     }
 
@@ -126,7 +126,7 @@ class User
             if($prepared->rowCount()>0)
             {
                 $res = $prepared->fetchAll();
-                //  print_r($res);
+              //  print_r($res);
                 $hash = md5($password);
                 //print($hash);
                 if($res[0]['password']==$hash)
@@ -146,7 +146,7 @@ class User
         }
         catch (Exception $ex)
         {
-            echo "Error : ", $ex;
+            echo "<script>alert(\"Error : \" . $ex->getMessage()"."\");</script>";
         }
         return false;
     }
@@ -161,7 +161,7 @@ class User
             $this->userConnection->executeQuery($prepared, $params);
 
         } catch (Exception $ex) {
-            echo "Error : ", $ex;
+            echo "<script>alert(\"Error : \" . $ex->getMessage()"."\");</script>";
         }
     }
 }

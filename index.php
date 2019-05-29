@@ -36,12 +36,13 @@ else
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
+
 </head>
 
 <body>
 <div id="wrapper">
 <?php
-require("sidebar.php");
+include "sidebar.php";
 ?>
 
     <div id="page-wrapper" class="gray-bg">
@@ -258,7 +259,7 @@ require ("navbar.php");
 
 <!-- jQuery UI -->
 <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
+<script src="js/pages.js"></script>
 
 
 </body>

@@ -16,7 +16,7 @@ setcookie("type",null,time()-3600,"/");
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
-</head>
+</head>\
 
 <body class="gray-bg">
 
@@ -55,7 +55,7 @@ setcookie("type",null,time()-3600,"/");
 <?php
 //PHP
 //-------------------------------------------------------------------------------------------------------------------------//
-require ('Classes/User.php');
+require_once ('Classes/User.php');
 
 if(isset($_POST["loginSubmit"]))
 {

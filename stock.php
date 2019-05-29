@@ -39,7 +39,7 @@ if(isset($_GET["article"]))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>POS | Article</title>
+    <title>POS | Stock</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -180,6 +180,7 @@ if(isset($_GET["article"]))
     <!-- Select2 -->
     <script src="js/plugins/select2/select2.full.min.js"></script>
 
+    <script src="js/pages.js"></script>
 
     <!-- Page-Level Scripts -->
     <script>

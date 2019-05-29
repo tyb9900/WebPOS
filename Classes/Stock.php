@@ -11,7 +11,7 @@ class Stock extends Connection implements CRUD
     public function __construct()
     {
         parent::__construct();
-        $this->TABLE = "stock";
+        $this->TABLE = "STOCK";
     }
 
     /**
@@ -89,7 +89,7 @@ class Stock extends Connection implements CRUD
     {
         // TODO: Implement retrieve() method.
 
-        $query = "SELECT $this->TABLE.Article,(SELECT categories.Name FROM categories,articles WHERE categories.id=articles.Category AND articles.Article=stock.Article) AS Category, stock.Pairs,(SELECT articles.Price FROM articles WHERE stock.Article=articles.Article)AS Price,(stock.Pairs * (SELECT articles.Price FROM articles WHERE stock.Article=articles.Article)) AS Amount from stock WHERE Article=?";
+        $query = "SELECT stock.Article,(SELECT categories.Name FROM categories,articles WHERE categories.id=articles.Category AND articles.Article=stock.Article) AS Category, stock.Pairs,(SELECT articles.Price FROM articles WHERE stock.Article=articles.Article)AS Price,(stock.Pairs * (SELECT articles.Price FROM articles WHERE stock.Article=articles.Article)) AS Amount from stock WHERE Article=?";
         $prepared = $this->prepareQuery($query);
         $param = [$this->article];
         $this->executeQuery($prepared,$param);
@@ -100,7 +100,7 @@ class Stock extends Connection implements CRUD
     {
         // TODO: Implement retriveAll() method.
 
-        $query = "SELECT $this->TABLE.Article,(SELECT categories.Name FROM categories,articles WHERE categories.id=articles.Category AND articles.Article=stock.Article) AS Category, stock.Pairs,(SELECT articles.Price FROM articles WHERE stock.Article=articles.Article)AS Price,(stock.Pairs * (SELECT articles.Price FROM articles WHERE stock.Article=articles.Article)) AS Amount from stock";
+        $query = "SELECT stock.Article,(SELECT categories.Name FROM categories,articles WHERE categories.id=articles.Category AND articles.Article=stock.Article) AS Category, stock.Pairs,(SELECT articles.Price FROM articles WHERE stock.Article=articles.Article)AS Price,(stock.Pairs * (SELECT articles.Price FROM articles WHERE stock.Article=articles.Article)) AS Amount from stock";
         $prepared = $this->prepareQuery($query);
         $this->executeQuery($prepared,null);
         return $prepared;

@@ -174,6 +174,7 @@ if(isset($_GET["article"]))
     <!-- Select2 -->
     <script src="js/plugins/select2/select2.full.min.js"></script>
 
+    <script src="js/pages.js"></script>
 
     <!-- Page-Level Scripts -->
     <script>
