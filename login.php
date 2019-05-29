@@ -3,6 +3,7 @@ session_start();
 session_destroy();
 setcookie("username",null,time()-3600,"/");
 setcookie("type",null,time()-3600,"/");
+setcookie("userimg",null,time()-3600,"/");
 ?>
 <html>
 <head>

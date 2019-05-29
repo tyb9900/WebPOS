@@ -5,8 +5,10 @@ if(isset($_SESSION["username"]))
 {
     $username = $_SESSION["username"];
     $type =  $_SESSION["type"];
+    $img =  $_SESSION["userimg"];
     setcookie("username",$username,time()+60*60*24*7,"/");
     setcookie("type",$type,time()+60*60*24*7,"/");
+    setcookie("userimg",$img,time()+60*60*24*7,"/");
 }
 else if(isset($_COOKIE["username"]))
 {
@@ -14,6 +16,7 @@ else if(isset($_COOKIE["username"]))
     $type = $_COOKIE["type"];
     $_SESSION["username"] = $username;
     $_SESSION["type"] = $type;
+    $_SESSION["userimg"] = $_COOKIE["userimg"];;
 
 }
 else
