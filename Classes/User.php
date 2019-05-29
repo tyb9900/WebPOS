@@ -4,10 +4,11 @@ require_once ('Connection.php');
 class User
 {
     private $userConnection = null;
-
+    private $TABLE;
     public function __construct()
     {
         $this->userConnection = new Connection;
+        $this->TABLE = "users";
     }
 
     public function createNewUser($username,$password,$type)
@@ -16,11 +17,12 @@ class User
         {
             if(!$this->userExist($username))
             {
-                $query  = "INSERT INTO USERS (username,password,type) VALUES (?,?,?)";
+                $query  = "INSERT INTO $this->TABLE (username,password,type,img) VALUES (?,?,?,?)";
                 $prepared = $this->userConnection->prepareQuery($query);
                 $hash = md5($password);
                 print($hash);
-                $params = [$username,$hash,$type];
+                $img = "graphics/users/user.png";
+                $params = [$username,$hash,$type,$img];
                 $this->userConnection->executeQuery($prepared,$params);
                 return true;
             }
@@ -39,12 +41,12 @@ class User
     public function userExist($username)
     {
         try{
-            $query = "SELECT * FROM USERS WHERE username=?";
+            $query = "SELECT * FROM $this->TABLE WHERE username=?";
             $prepared = $this->userConnection->prepareQuery($query);
             $params = [$username];
             $this->userConnection->executeQuery($prepared,$params);
             if($prepared->rowCount()>0)
-            return true;
+                return true;
         }
         catch (Exception $ex)
         {
@@ -56,7 +58,7 @@ class User
     function deleteUser($username)
     {
         try{
-            $query = "DELETE FROM USERS WHERE username=?";
+            $query = "DELETE FROM $this->TABLE WHERE username=?";
             $prepared = $this->userConnection->prepareQuery($query);
             $params = [$username];
             $this->userConnection->executeQuery($prepared,$params);
@@ -72,11 +74,11 @@ class User
     function updateUser($username,$type)
     {
         try{
-            $query = "UPDATE USERS SET type=? WHERE username=?";
+            $query = "UPDATE $this->TABLE SET type=? WHERE username=?";
             $prepared = $this->userConnection->prepareQuery($query);
             $params = [$type,$username];
             $this->userConnection->executeQuery($prepared,$params);
-                return true;
+            return true;
         }
         catch (Exception $ex)
         {
@@ -88,7 +90,7 @@ class User
     public function getUserCount()
     {
         try{
-            $query = "SELECT * FROM USERS";
+            $query = "SELECT * FROM $this->TABLE";
             $prepared = $this->userConnection->prepareQuery($query);
             $this->userConnection->executeQuery($prepared,null);
             return $prepared->rowCount();
@@ -102,7 +104,7 @@ class User
     public function getUsers()
     {
         try{
-            $query = "SELECT * FROM USERS";
+            $query = "SELECT * FROM $this->TABLE";
             $prepared = $this->userConnection->prepareQuery($query);
             $this->userConnection->executeQuery($prepared,null);
             return $prepared;
@@ -117,14 +119,14 @@ class User
     public function login($username,$password)
     {
         try{
-            $query = "SELECT * FROM USERS WHERE username=?";
+            $query = "SELECT * FROM $this->TABLE WHERE username=?";
             $prepared = $this->userConnection->prepareQuery($query);
             $params = [$username];
             $this->userConnection->executeQuery($prepared,$params);
             if($prepared->rowCount()>0)
             {
                 $res = $prepared->fetchAll();
-              //  print_r($res);
+                //  print_r($res);
                 $hash = md5($password);
                 //print($hash);
                 if($res[0]['password']==$hash)
@@ -132,6 +134,7 @@ class User
                     session_start();
                     $_SESSION["username"] = $username;
                     $_SESSION["type"] = $res[0]['type'];
+                    $_SESSION["userimg"] = $res[0]['img'];
 
                     return true;
                 }
@@ -146,5 +149,19 @@ class User
             echo "Error : ", $ex;
         }
         return false;
+    }
+
+    public function uploadPicture($basename,$username)
+    {
+        try {
+            $query = "UPDATE $this->TABLE  SET img = ? WHERE username=?";
+            echo "<script>alert($query);</script>";
+            $prepared = $this->userConnection->prepareQuery($query);
+            $params = [$basename,$username];
+            $this->userConnection->executeQuery($prepared, $params);
+
+        } catch (Exception $ex) {
+            echo "Error : ", $ex;
+        }
     }
 }
