@@ -61,9 +61,6 @@ if(isset($_POST["registerSubmit"]))
             <div class="form-group">
                 <input id="password" name="password" type="password" class="form-control" placeholder="Password" required="">
             </div>
-            <div class="form-group">
-                <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
-            </div>
             <input type="submit" class="btn btn-primary block full-width m-b" name="registerSubmit" value="Register">
 
             <p class="text-muted text-center"><small>Already have an account?</small></p>
@@ -76,16 +73,6 @@ if(isset($_POST["registerSubmit"]))
 <!-- Mainly scripts -->
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="js/plugins/iCheck/icheck.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
-        });
-    });
-</script>
 </body>
 
 </html>
