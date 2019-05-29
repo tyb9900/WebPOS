@@ -2,14 +2,18 @@
 
 class Connection
 {
-   private $servername = 'localhost';
-   private $databaseName = 'WebPOS';
-   private $username = 'root';
+//   private $servername = 'localhost';
+//   private $databaseName = 'WebPOS';
+//   private $username = 'root';
+    private $servername = 'localhost';
+    private $databaseName = 'IxyghNOWMO';
+    private $username = 'IxyghNOWMO';
+   private $password = 'hEcGbld5C3';
    private $conn = null;
    public function __construct()
    {
        try {
-           $this->conn = new PDO("mysql:host=$this->servername;dbname=$this->databaseName", $this->username);
+           $this->conn = new PDO("mysql:host=$this->servername;dbname=$this->databaseName", $this->username,$this->password);
            // set the PDO error mode to exception
            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           // echo "Connected successfully";
