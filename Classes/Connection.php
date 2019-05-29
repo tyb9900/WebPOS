@@ -2,10 +2,10 @@
 
 class Connection
 {
-   private $servername = 'localhost';
-   private $databaseName = 'WebPOS';
-   private $username = 'root';
-   private $conn = null;
+   private $servername = 'remotemysql.com';
+   private $databaseName = 'lxghNOWMO';
+   private $username = 'lxghNOWMO';
+   private $conn = 'hEcGbld5C3';
    public function __construct()
    {
        try {
