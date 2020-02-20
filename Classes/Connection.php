@@ -2,14 +2,13 @@
 
 class Connection
 {
-   private $servername = 'localhost';
-   private $databaseName = 'WebPOS';
-   private $username = 'root';
-//    private $servername = 'remotemysql.com';
-//    private $databaseName = 'IxyghNOWMO';
-//    private $username = 'IxyghNOWMO';
-//   private $password = 'hEcGbld5C3';
-   private $conn = null;
+//   private $servername = 'localhost';
+//   private $databaseName = 'WebPOS';
+//   private $username = 'root';
+   private $servername = 'sql308.epizy.com';
+   private $databaseName = 'epiz_25231947_webPOS';
+   private $username = 'epiz_25231947';
+   private $password = 'GELXsYkoQ1Bt';   private $conn = null;
    public function __construct()
    {
        try {
